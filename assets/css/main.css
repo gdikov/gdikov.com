@@ -1,5 +1,4 @@
 /*@import url("../fontawesome/css/fontawesome.min.css");*/
-@import url("academicons.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
 /*
 	Dimension by HTML5 UP
@@ -760,6 +759,26 @@ ul.actions {
 ul.actions li {
   padding: 0 0 0 1rem;
   vertical-align: middle;
+}
+
+ul.actions a.icon {
+  display: block;
+  border-bottom: 0;
+  font-size: 2em;
+  line-height: 1;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+ul.actions a.icon:hover {
+  opacity: 0.75;
+}
+
+ul.actions a.icon svg {
+  display: block;
+  height: 1em;
+  width: auto;
+  fill: currentColor;
 }
 
 ul.actions.special {
