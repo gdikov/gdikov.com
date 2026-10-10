@@ -10,11 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/academicons.min.css"/>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<script type="text/javascript" async
-    		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-  		</script>
   		<script src="https://kit.fontawesome.com/7fec562f9d.js" crossorigin="anonymous"></script>
 	</head>
 	<body class="is-preload">
@@ -55,11 +51,14 @@
 			<div id="bg"></div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script>
+				// Play initial animations on page load.
+				window.addEventListener('load', function() {
+					window.setTimeout(function() {
+						document.body.classList.remove('is-preload');
+					}, 100);
+				});
+			</script>
 
 	</body>
 </html>
