@@ -170,6 +170,7 @@ ul.actions a.icon svg {
 #bg:after {
   transform: scale(1.125);
   background-image: url("../../images/bg.jpg");
+  background-image: image-set(url("../../images/bg.webp") type("image/webp"), url("../../images/bg.jpg") type("image/jpeg"));
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
