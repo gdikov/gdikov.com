@@ -150,7 +150,11 @@ ul.actions a.icon svg {
   backface-visibility: hidden;
 }
 
-#bg:before, #bg:after {
+#bg {
+  background: #1b1f22;
+}
+
+#bg:before {
   content: '';
   display: block;
   position: absolute;
@@ -158,23 +162,8 @@ ul.actions a.icon svg {
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-#bg:before {
   transition: background-color 2.5s ease-in-out;
   transition-delay: 0.75s;
-  background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5));
-  z-index: 2;
-}
-
-#bg:after {
-  transform: scale(1.125);
-  background-image: url("../../images/bg.jpg");
-  background-image: image-set(url("../../images/bg.webp") type("image/webp"), url("../../images/bg.jpg") type("image/jpeg"));
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: 1;
 }
 
 body.is-preload #bg:before {
@@ -260,6 +249,109 @@ body.is-preload #bg:before {
   line-height: 5.5rem;
   border: solid 1px #ffffff;
   border-radius: 100%;
+}
+
+/* Eclipse: clicking the logo dims it into a dark disc, flashes a "diamond
+   ring" bead on the rim and blooms a corona around it. */
+#header .logo .corona {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  /* Rim of light at the disc's edge, fading out into a soft glow. */
+  background: radial-gradient(closest-side,
+    transparent 0 24.2%,
+    rgba(255, 255, 255, 0.9) 25%,
+    rgba(255, 247, 235, 0.5) 26.5%,
+    rgba(255, 240, 220, 0.22) 32%,
+    rgba(255, 236, 214, 0.09) 48%,
+    rgba(255, 236, 214, 0.03) 70%,
+    transparent 100%);
+}
+
+/* Streamers: two sets of faint rays at different spacings, so their
+   overlap looks irregular, faded out with distance from the disc. */
+#header .logo .corona:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 10deg, rgba(255, 250, 240, 0.16) 0deg 1.2deg, transparent 1.2deg 6.5deg),
+    repeating-conic-gradient(from 3deg, rgba(255, 250, 240, 0.12) 0deg 0.8deg, transparent 0.8deg 11deg);
+  -webkit-mask-image: radial-gradient(closest-side, transparent 0 25%, #000 27%, rgba(0, 0, 0, 0.35) 50%, transparent 85%);
+  mask-image: radial-gradient(closest-side, transparent 0 25%, #000 27%, rgba(0, 0, 0, 0.35) 50%, transparent 85%);
+  filter: blur(1.5px);
+}
+
+/* The diamond-ring bead, on the rim at the top right. */
+#header .logo:after {
+  content: '';
+  position: absolute;
+  top: 14.6%;
+  left: 85.4%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(closest-side, #ffffff 0 25%, rgba(255, 250, 240, 0.6) 45%, transparent 100%);
+  box-shadow: 0 0 1.2rem 0.4rem rgba(255, 248, 235, 0.45);
+}
+
+#header .logo.is-eclipse {
+  animation: eclipse-disc 4s ease-in-out;
+}
+
+#header .logo.is-eclipse img {
+  animation: eclipse-glyph 4s ease-in-out;
+}
+
+#header .logo.is-eclipse .corona {
+  animation: eclipse-corona 4s ease-out;
+}
+
+#header .logo.is-eclipse:after {
+  animation: eclipse-bead 4s ease-out;
+}
+
+@keyframes eclipse-disc {
+  0% { background-color: rgba(7, 8, 10, 0); }
+  18%, 70% { background-color: rgba(7, 8, 10, 1); }
+  100% { background-color: rgba(7, 8, 10, 0); }
+}
+
+@keyframes eclipse-glyph {
+  0% { opacity: 1; }
+  18%, 70% { opacity: 0.1; }
+  100% { opacity: 1; }
+}
+
+@keyframes eclipse-corona {
+  0% { opacity: 0; transform: scale(0.82) rotate(0deg); }
+  22% { opacity: 1; transform: scale(1) rotate(4deg); }
+  62% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.06) rotate(10deg); }
+}
+
+@keyframes eclipse-bead {
+  0% { opacity: 0; transform: scale(0.4); }
+  9% { opacity: 1; transform: scale(1); }
+  30% { opacity: 0; transform: scale(1.5); }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #header .logo .corona,
+  #header .logo:after {
+    transform: none !important;
+  }
 }
 
 #header .content {

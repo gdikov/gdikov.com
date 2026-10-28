@@ -34,7 +34,7 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<img src="images/logo_white.svg" alt=""/>
+							<span class="corona" aria-hidden="true"></span><img src="images/logo_white.svg" alt=""/>
 						</div>
 						<div class="content">
 							<div class="inner">
@@ -56,7 +56,7 @@
 					
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; Georgi Dikov. Design: <a href="https://html5up.net">HTML5 UP</a>. Background image: <a href="https://unsplash.com/photos/r_UXp6HtMWc">Unsplash</a>.</p>
+						<p class="copyright">&copy; Georgi Dikov. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
 			</div>
@@ -71,6 +71,17 @@
 					window.setTimeout(function() {
 						document.body.classList.remove('is-preload');
 					}, 100);
+				});
+
+				// Eclipse on clicking the logo.
+				var logo = document.querySelector('#header .logo');
+				logo.addEventListener('click', function() {
+					logo.classList.remove('is-eclipse');
+					void logo.offsetWidth;	// restart the animation if it is already running
+					logo.classList.add('is-eclipse');
+				});
+				logo.addEventListener('animationend', function(e) {
+					if (e.target === logo) logo.classList.remove('is-eclipse');
 				});
 			</script>
 
