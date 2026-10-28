@@ -164,6 +164,16 @@ ul.actions a.icon svg {
   height: 100%;
   transition: background-color 2.5s ease-in-out;
   transition-delay: 0.75s;
+  z-index: 2;
+}
+
+#bg canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 body.is-preload #bg:before {
